@@ -2,7 +2,7 @@
 
 This guide will walk you through setting up your Asterisk PBX on AWS, configuring your SIP provider (like Twilio), and spinning up the local Java Lead Service.
 
-## Phase 1: Deploy Asterisk PBX via Terraform
+## Step 1: Deploy Asterisk PBX via Terraform
 
 We use Terraform to automatically spin up an AWS EC2 instance, install FreePBX, configure the firewall, and apply all SIP NAT and routing configurations.
 
@@ -27,7 +27,7 @@ We use Terraform to automatically spin up an AWS EC2 instance, install FreePBX, 
    terraform init
    terraform apply
    ```
-   *Note: This process takes about ~10-15 minutes because it installs FreePBX from scratch. Grab a coffee!*
+   *Note: This process takes about ~10-15 minutes because it installs FreePBX from scratch.*
 
 4. **Upload your Greeting**:
    Once Terraform finishes, it will output the PBX's IP address. Upload your custom `greeting.mp3` or `.wav` to the PBX:
@@ -38,7 +38,7 @@ We use Terraform to automatically spin up an AWS EC2 instance, install FreePBX, 
 
 ---
 
-## Phase 2: Configure Your SIP Provider (Example: Twilio)
+## Step 2: Configure Your SIP Provider (Example: Twilio)
 
 You need to tell your SIP provider where to route incoming calls.
 
@@ -50,7 +50,7 @@ You need to tell your SIP provider where to route incoming calls.
 
 ---
 
-## Phase 3: Start the Lead Service
+## Step 3: Start the Lead Service
 
 The Lead Service is a Dockerized Spring Boot application that connects to Asterisk, listens for hangups, and submits leads.
 
@@ -84,7 +84,7 @@ The Lead Service is a Dockerized Spring Boot application that connects to Asteri
 
 ---
 
-## Phase 4: Test & Monitor
+## Step 4: Test & Monitor
 
 1. **Make a Call**: Dial your Twilio number from your cell phone. You should hear the greeting play, and the call will hang up automatically.
 2. **Check Logs**: The `lead-service` logs should show a successful JSON payload dispatch to your registry.
